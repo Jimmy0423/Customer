@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import se.jimi.customer.model.Customer;
-import se.jimi.customer.model.MemeberStaus;
+import se.jimi.customer.model.MemberStatus;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
@@ -13,6 +13,8 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
 	Customer findByEmail(String email);
 
-	List<Customer> findByMemberStatus(MemeberStaus status);
+	List<Customer> findByMemberStatus(MemberStatus status);
+
+	
 
 }

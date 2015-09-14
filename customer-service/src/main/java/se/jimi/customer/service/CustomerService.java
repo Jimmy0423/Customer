@@ -2,10 +2,12 @@ package se.jimi.customer.service;
 
 import java.util.List;
 
+import javax.xml.ws.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import se.jimi.customer.model.Customer;
-import se.jimi.customer.model.MemeberStaus;
+import se.jimi.customer.model.MemberStatus;
 import se.jimi.customer.repository.CustomerRepository;
 
 public class CustomerService {
@@ -18,22 +20,37 @@ public class CustomerService {
 	}
 
 	public Customer findByEmail(String email) {
-		if (customerRepository.findByEmail(email) == null) {
+
+		Customer customer = customerRepository.findByEmail(email);
+
+		if (customer == null) {
 			throw new IllegalArgumentException("there is no user with that Email");
 		} else {
-			return customerRepository.findByEmail(email);
+			return customer;
 		}
 	}
 
-	public List<Customer> findByMemeberStatus(MemeberStaus status) {
+	public List<Customer> findByMemeberStatus(MemberStatus status) {
 		if (customerRepository.findByMemberStatus(status).isEmpty()) {
 			throw new IllegalArgumentException("There is no Member with this status");
 		}
 		return customerRepository.findByMemberStatus(status);
 	}
 
-	public Customer findByCustomerId(Long id) {
-		return customerRepository.findCustomerById(id);
+	public Customer findByCustomerId(long id) {
+		Customer customer = customerRepository.findCustomerById(id);
+
+		if (customer == null) {
+			throw new IllegalArgumentException("There is no Member with this id");
+		} else {
+			return customer;
+
+		}
+
+	}
+
+	public void removeCustomer(long id) {
+		customerRepository.delete(id);
 	}
 
 }

@@ -2,6 +2,8 @@ package se.jimi.customer.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 public class Customer extends AbstractModel {
@@ -9,12 +11,13 @@ public class Customer extends AbstractModel {
 	@Column(unique = true)
 	private String email;
 
-	private MemeberStaus memberStatus;
+	@Enumerated(EnumType.STRING)
+	private MemberStatus memberStatus;
 
 	protected Customer() {
 	}
 
-	public Customer(String email, MemeberStaus memberStatus) {
+	public Customer(String email, MemberStatus memberStatus) {
 		this.email = email;
 		this.memberStatus = memberStatus;
 	}
@@ -27,11 +30,11 @@ public class Customer extends AbstractModel {
 		this.email = email;
 	}
 
-	public MemeberStaus getMemberStatus() {
+	public MemberStatus getMemberStatus() {
 		return memberStatus;
 	}
 
-	public void setMemberStatus(MemeberStaus memberStatus) {
+	public void setMemberStatus(MemberStatus memberStatus) {
 		this.memberStatus = memberStatus;
 	}
 
