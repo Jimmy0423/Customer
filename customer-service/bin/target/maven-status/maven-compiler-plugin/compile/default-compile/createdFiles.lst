@@ -1,0 +1,8 @@
+se/jimi/customer/service/CustomerService.class
+se/jimi/customer/main/Main.class
+se/jimi/customer/model/AbstractModel.class
+se/jimi/customer/model/MemeberStaus.class
+se/jimi/customer/config/InfrastructureConfig.class
+se/jimi/customer/model/Customer.class
+se/jimi/customer/config/ServiceConfig.class
+se/jimi/customer/repository/CustomerRepository.class
