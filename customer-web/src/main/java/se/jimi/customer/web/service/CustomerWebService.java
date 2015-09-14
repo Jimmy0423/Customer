@@ -4,9 +4,11 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -26,26 +28,27 @@ public class CustomerWebService {
 
 	@GET
 	@Path("{customerId}")
-	public Response getCustomerById(@Param("customerId") long customerId) 
-	{
+	public Response getCustomerById(@PathParam("customerId") long customerId) {
 		Customer customer = customerService.findByCustomerId(customerId);
 		return Response.ok(customer).build();
 	}
 
-
-
 	@Path("email/{email}")
 	@GET
-	public Response getCustomerByEmail(@Param("email") String email) {
+	public Response getCustomerByEmail(@PathParam("email") String email) {
 		Customer customer = customerService.findByEmail(email);
 		return Response.ok(customer).build();
 	}
 
 	@Path("{id}")
 	@DELETE
-	public Response removeCustomer(@Param("id") long id) {
+	public Response removeCustomer(@PathParam("id") long id) {
+		Customer customer = customerService.findByCustomerId(id);
+		if(customer == null){
+			return Response.status(Status.BAD_REQUEST).build();
+		}
 		customerService.removeCustomer(id);
-		return Response.noContent().build();
+		return Response.ok(customer).build();
 	}
 
 }

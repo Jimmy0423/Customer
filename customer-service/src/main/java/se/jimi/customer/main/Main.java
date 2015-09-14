@@ -23,10 +23,6 @@ public class Main {
 			service.addCustomer(cus2);
 			service.addCustomer(cus1);
 
-			// System.out.println(service.findByEmail("jimmy@aol.om"));
-
-			System.out.println(service.findByMemeberStatus(MemberStatus.NO_MEMBER));
-
 		}
 
 	}
